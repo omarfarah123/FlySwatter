@@ -1,0 +1,123 @@
+<!-- 
+		Fly Swatter Game using JavaScript and JQuery
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+	  
+	<link href="css/game.css" rel="stylesheet" />
+	<link rel="shortcut icon" type="image/png" href="img/favicon.jpg">
+    <script src="js/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+	<script>
+		let $gamer1;
+		let remainingSeconds = 30;
+		let counter = 0;
+		let idCounter = 0;
+		$(document).ready(function(){
+		$gamer1 = prompt("Enter first name");
+		$('#Intro').prepend(`<p>Are you ready to get started ${$gamer1}?`);
+	
+		$('#timer').children().css({"font-size": "15px", "font-weight": "bold", "color": "#0c5012"}).hide();
+		$( "#datepicker" ).datepicker();
+		$('#start_button').click(function(){
+			start();
+			$('#start_button').off();
+		});
+		
+		$("#start_button").css({"font-size": "18px", "background-color": "#8FBC8F", "padding": "15px"});
+
+		$('#gamespace').on('click', "img", function() {
+				scoreIncrement();
+				$(this).hide();
+			});
+		});
+		//End of on Ready
+
+		//Returns random x coordinate
+		function randomX(){
+			let xCoordinate = Math.floor(Math.random() * 550);
+			return xCoordinate;
+		}
+		//Returns random y coordinate
+		function randomY(){
+			let yCoordinate = Math.floor(Math.random() * 270);
+			return yCoordinate;
+		}
+		//Returns random seconds
+		function randomSecond(){
+			let sec = Math.floor(Math.random() * 2000);
+			return sec;
+		}
+		//This fucntion increments the score by 1;
+		function scoreIncrement(){
+			counter += 1;
+		$("#score").html(`${counter} pts`);
+	
+		}
+		//This function is the timer of the game 
+		function timer(){
+			if(remainingSeconds <= 0){
+				alert(`Game over Score: ${counter}`);
+				location.reload();
+			} else {
+				remainingSeconds--;
+			$("#timer").html(remainingSeconds + " second left");
+			let time = setTimeout("timer();", 1000);
+			}
+		}
+		//This function calls 2 fucntions for adding the flys and the timer when the start button is clicked
+		function start(){
+		    addImage();
+			//addImage();
+			timer();
+		}
+		//This function adds the flys to the gamespace
+		function addImage(){
+			let xPos= randomX();
+			let yPos = randomY();
+			$('#gamespace').append("<img src=img/fly.jpg" +` id=fly${idCounter} ` + ` style= "left: ${xPos}px; top: ${yPos}px;">`).children().addClass('gameimage');
+			$(`#fly${idCounter}`).fadeOut(2500);
+			idCounter++;
+			var r = Math.floor(Math.random()*2000);
+			t = setTimeout("addImage();", r);
+		    
+		}
+	   
+    	$( "#datepicker" ).datepicker();
+  
+
+
+	</script>
+    <title>Swat-A-Fly (CSCI2447)</title>
+    
+  </head>
+  <body>
+
+	<div id="content">
+
+		<h1>Swat-A-Fly</h1>
+		
+		<p id="Intro">After clicking "start", you will have 30 seconds to swat
+		as many fly's as you can. The fly's appear randomly so be ready! </p>
+		
+		<div id="controls">
+			<span id="score">0 pts</span>
+			<button type="button" id="start_button">Start!</button>
+		</div>
+		<!--Jquery DatePicker UI-->
+		<p>Date: <input type="text" id="datepicker"></p>
+		
+		<div id="timer">30 seconds left</div>
+
+		<div id="gamespace">
+			
+		</div>
+
+		</div>
+		
+	</div>
+  </body>
+
+</html>

@@ -1,0 +1,60 @@
+/* CSS Document */
+
+html, body {
+	
+	margin: 0 auto;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 15px;
+	color: #0c5012;
+	background-image: url("livingroom.jpg");
+	height: 800px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #122177;
+}
+	
+h1 {
+	margin: 2px;}
+	
+button {
+	font-size: 12px;
+	font-weight: bold;
+	padding: 8px; }
+	
+div#content {
+    width: 700px;
+    margin:0 auto;
+	padding: 20px;
+	background-color: #EEE ; }
+	
+div#controls {
+	text-align: right; }
+	
+div#controls span {
+	font-weight: bold;
+	color: #990000; }
+	
+div#controls button {
+	margin-left: 20px; }
+	
+
+	
+div#gamespace {
+	margin: 20px;
+	padding: 10px;
+	height: 350px;
+	background-color: #FFF;
+	border: 2px solid #CCC; 
+	cursor: url(arrow.png),auto;
+	position: relative; 
+}
+
+.gameimage{
+	height: 100px;
+	width: 50px;
+}
+
+div#gamespace img { position: absolute; }
+
+
